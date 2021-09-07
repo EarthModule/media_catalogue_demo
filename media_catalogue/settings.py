@@ -26,9 +26,7 @@ SECRET_KEY = "django-insecure-ga_*g=gmd-+dpbgirqx+k!md8l^-c+&q150ho$xkmo1e%o4=q-
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-INTERNAL_IPS = [
-    '127.0.0.1', "localhost"
-]
+INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -41,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "movies.apps.MoviesConfig",
-    'debug_toolbar',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -52,7 +50,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "media_catalogue.urls"

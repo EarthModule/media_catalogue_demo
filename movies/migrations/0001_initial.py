@@ -8,58 +8,119 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Movie',
+            name="Movie",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=512)),
-                ('year', models.DateField()),
-                ('box_office', models.FloatField(blank=True, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=512)),
+                ("year", models.DateField()),
+                ("box_office", models.FloatField(blank=True, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='MovieCategory',
+            name="MovieCategory",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='MovieStaffMember',
+            name="MovieStaffMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('birth_year', models.DateField(blank=True, null=True)),
-                ('is_alive', models.BooleanField(default=True)),
-                ('career', models.CharField(choices=[('DRT', 'Director'), ('ACT', 'Actor')], default='ACT', max_length=5)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("birth_year", models.DateField(blank=True, null=True)),
+                ("is_alive", models.BooleanField(default=True)),
+                (
+                    "career",
+                    models.CharField(
+                        choices=[("DRT", "Director"), ("ACT", "Actor")],
+                        default="ACT",
+                        max_length=5,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='MovieRole',
+            name="MovieRole",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('role', models.CharField(max_length=512)),
-                ('actor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='roles', to='movies.moviestaffmember')),
-                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='movie_roles', to='movies.movie')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("role", models.CharField(max_length=512)),
+                (
+                    "actor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="roles",
+                        to="movies.moviestaffmember",
+                    ),
+                ),
+                (
+                    "movie",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="movie_roles",
+                        to="movies.movie",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='movie',
-            name='actors',
-            field=models.ManyToManyField(related_name='actors', to='movies.MovieStaffMember'),
+            model_name="movie",
+            name="actors",
+            field=models.ManyToManyField(
+                related_name="actors", to="movies.MovieStaffMember"
+            ),
         ),
         migrations.AddField(
-            model_name='movie',
-            name='categories',
-            field=models.ManyToManyField(related_name='categories', to='movies.MovieCategory'),
+            model_name="movie",
+            name="categories",
+            field=models.ManyToManyField(
+                related_name="categories", to="movies.MovieCategory"
+            ),
         ),
         migrations.AddField(
-            model_name='movie',
-            name='director',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='director', to='movies.moviestaffmember'),
+            model_name="movie",
+            name="director",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="director",
+                to="movies.moviestaffmember",
+            ),
         ),
     ]
